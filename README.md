@@ -95,3 +95,7 @@ Pour regarder les partages disponibles sur l'adresse 192.168.0.44 (celle de la r
 
 Pour monter une partition avec le système de fichier `smb3` et les options -o pour préciser l'identifiant et le mot de passe de la partition que à laquelle on veut accèder, ainsi que l'id du groupe / utilisateur que l'on veut donner. Enfin, on précise l'adresse de la machine hôte du répertoire des données (192.168.0.44) ainsi que le nom que l'on a récupéré avant (USBShare) puis le chemin /!\ ABSOLU /!\ jusqu'au point de montage.
 `sudo mount -t smb3 -o username=pi,password=aledaled,gid=33,uid=33 //192.168.0.44/USBShare /home/pi/Docker/infraProject/webServers/app/Share/`
+
+### Ajout d'une Machine :
+
+Pour ajouter une machine au projet, il suffit de dupliquer un des dossiers dans `webApp` contenant le Dockerfile, puis changer le nom. Enfin, ajouter la création du Docker dans le `docker-compose.yml` (il suffit de dupliquer une des créations de server et adapter les noms) et finalement ajouter une ligne dans le fichier de configuration de haproxy (`haproxy/haproxy.cfg`) comme les précédentes (en changeant le nom du server).
