@@ -1,0 +1,39 @@
+version: '3.7'
+ 
+services:
+    webserv1:
+        container_name: "webServ1Projet"
+        build:
+                context: ./webServers/
+                dockerfile: 1/Dockerfile
+        volumes:
+                - ./webServers/app:/var/www/html
+        networks:
+            public_net:
+    webserv2:
+        container_name: "webServ2Projet"
+        build:
+                context: ./webServers/
+                dockerfile: 2/Dockerfile
+        volumes:
+                - ./webServers/app:/var/www/html
+        networks:
+            public_net:
+
+    haproxy:
+        container_name: "haproxyProjet"
+        build: ./haproxy
+        ports:
+            - 80:80
+        expose:
+            - 80
+        networks:
+            public_net:
+
+networks:
+    public_net:
+        driver: bridge
+        ipam:
+            driver: default
+            config:
+                - subnet: 192.169.0.0/29
