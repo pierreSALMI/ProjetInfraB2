@@ -3,7 +3,7 @@
 Notre ProjetInfra est un système de stockage accessible en ligne depuis une interface web.
 Pour ce projet nous utilisons deux Rspberry pi 4 et une clé USB ou disque dure externe (DDE) pour le stockage.
 
-##Stockage
+## Stockage
 
 ### Samba
 Pour partager les fichiers à l'autre Raspberry nous utiliserons Samba.
@@ -52,4 +52,4 @@ sudo mount -t ext3 /dev/mapper/share /data/USBShare
 
 Puis on redémarre la Raspberry `sudo reboot`. 
 
-##Web
+## Web
