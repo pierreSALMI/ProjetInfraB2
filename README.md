@@ -54,6 +54,12 @@ Puis on redémarre la Raspberry `sudo reboot`.
 
 ## Web
 
+### Mise en place de l'accès Internet :
+
+Veillez pour mettre en place le projet à bien ouvrir un port sur l'accès internet de votre machine qui redirige vers votre machine.
+
+Vérifier aussi qu'il n'y ai aucun autre service sur votre machine qui occupe le port 80 (utilisé par le service) Sinon, modifier le port connecté à HAProxy (dans docker-compose.yml, ligne 27 -> `ports: - 80:80`, il faut modifier le premier (le port sur l'hôte)) et ajuster la redirection réalisée ci-précédemment au port de la machine.
+
 ### Installation de docker :
 
 Télécharge + lance l'installation de Docker :
@@ -77,7 +83,7 @@ Et boom ! Docker et docker-compose sont installés et utilisables sur la machine
 
 ### Récupération de la conf :
 
-
+Pour récupérer la conf, il suffit de download/clone ce repo et de copier la conf dans le dossier que vous désirez.
 
 ### Récupération de la donnée :
 
@@ -87,5 +93,5 @@ Création du dossier "point de montage" sur lequel on montera la partition issue
 Pour regarder les partages disponibles sur l'adresse 192.168.0.44 (celle de la raspberry hôte des données) :
 `smbclient -L 192.168.0.44`
 
-Pour monter une partition avec le système de fichier `smb3` et les options -o pour préciser l'identifiant et le mot de passe de la partition que à laquelle on veut accèder, ainsi que l'id du groupe / utilisateur que l'on veut donner. Enfin, on précise l'adresse de la machine hôte du répertoire des données (192.168.0.4) ainsi que le nom que l'on a récupéré avant (USBShare) puis le chemin /!\ ABSOLU /!\ jusqu'au point de montage.
+Pour monter une partition avec le système de fichier `smb3` et les options -o pour préciser l'identifiant et le mot de passe de la partition que à laquelle on veut accèder, ainsi que l'id du groupe / utilisateur que l'on veut donner. Enfin, on précise l'adresse de la machine hôte du répertoire des données (192.168.0.44) ainsi que le nom que l'on a récupéré avant (USBShare) puis le chemin /!\ ABSOLU /!\ jusqu'au point de montage.
 `sudo mount -t smb3 -o username=pi,password=aledaled,gid=33,uid=33 //192.168.0.44/USBShare /home/pi/Docker/infraProject/webServers/app/Share/`
